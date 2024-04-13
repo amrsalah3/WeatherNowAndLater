@@ -1,0 +1,63 @@
+name: Build
+
+on:
+  pull_request :
+    branches : [ master ]
+  push :
+    branches : [ master ]
+
+jobs:
+  lints-and-tests:
+    name: Check Lints And Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Project
+        uses: actions/checkout@v4.1.0
+
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: gradle
+
+      - name: Setup Gradle Cache
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*', '**/gradle-wrapper.properties') }}
+
+      - name: Grant execute permissions for gradlew
+        run: chmod +x ./gradlew
+
+      - name: Run Kotlin Linter
+        run: ./gradlew ktlintCheck
+
+      - name: Run Unit Tests
+        run: ./gradlew test
+
+  apk:
+    name: Generate APK
+    needs: lints-and-tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4.1.0
+
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'adopt'
+          cache: gradle
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: WeatherNowAndLater
+          path: app/build/outputs/apk/debug/app-debug.apk

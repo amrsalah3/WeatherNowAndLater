@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        google()
+        mavenCentral()
+        gradlePluginPortal()
+    }
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        mavenLocal()
+    }
+}
+rootProject.name = "Weather Now & Later"
+include ':app'
+include ':core'
+include ':data'
+include ':feature:city'
+include ':feature:currentweather'
+include ':feature:dailyforecast'
+include ':domain'
+include ':weatherdatatools-library'
