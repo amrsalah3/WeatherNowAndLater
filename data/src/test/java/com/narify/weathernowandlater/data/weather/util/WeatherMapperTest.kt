@@ -33,7 +33,7 @@ internal class WeatherMapperTest {
             windSpeed = 7.0,
             condition = "Clear",
             description = "clear sky",
-            iconUrl = "https://openweathermap.org/img/wn/01d@2x.png"
+            iconUrl = "https://openweathermap.org/img/wn/01d@4x.png"
         )
 
         val actualWeather = weatherDto.asCurrentWeather()
@@ -82,7 +82,7 @@ internal class WeatherMapperTest {
                 windSpeed = 10.0,
                 condition = "Cloudy",
                 description = "heavy clouds",
-                iconUrl = "https://openweathermap.org/img/wn/02d@2x.png"
+                iconUrl = "https://openweathermap.org/img/wn/02d@4x.png"
             )
         )
 

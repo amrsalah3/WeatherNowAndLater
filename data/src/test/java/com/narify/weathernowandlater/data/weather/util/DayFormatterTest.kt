@@ -15,7 +15,7 @@ internal class DayFormatterTest {
             .lowercase()
             .replaceFirstChar { it.uppercaseChar() }
 
-        val actualDay = com.narify.weathernowandlater.core.util.DayFormatter.getDayName(5)
+        val actualDay = DayFormatter.getDayName(5)
 
         assertEquals(expectedDay, actualDay)
     }
