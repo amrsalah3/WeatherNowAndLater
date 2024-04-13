@@ -1,6 +1,5 @@
 package com.narify.weathernowandlater
 
-import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -13,7 +12,6 @@ import com.narify.weathernowandlater.city.PickCityRoute
 import com.narify.weathernowandlater.currentweather.CurrentWeatherRoute
 import com.narify.weathernowandlater.dailyforecast.DailyForecastRoute
 
-@OptIn(ExperimentalAnimationApi::class)
 @Composable
 fun WeatherNowAndLaterNavGraph(
     navController: NavHostController = rememberNavController(),
